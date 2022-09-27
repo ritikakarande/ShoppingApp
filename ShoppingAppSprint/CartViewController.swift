@@ -37,6 +37,7 @@ class CartViewController: UIViewController, UITableViewDelegate,UITableViewDataS
             
         }
     }
+    //fetching data from core data
     func fetch() {
         let request = NSFetchRequest<CartData>(entityName: "CartData")
         do{
@@ -46,6 +47,7 @@ class CartViewController: UIViewController, UITableViewDelegate,UITableViewDataS
         }
         
     }
+    // Functions to display data in tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return result.count
     }
@@ -61,7 +63,7 @@ class CartViewController: UIViewController, UITableViewDelegate,UITableViewDataS
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 400
     }
-
+    //Button to show address on map
     @IBAction func orderNowClicked(_ sender: Any) {
         let addressMapVC = self.storyboard?.instantiateViewController(withIdentifier: "PlaceOrderViewController") as! PlaceOrderViewController
         self.navigationController?.pushViewController(addressMapVC, animated: true)
