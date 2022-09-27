@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CartData" representedClassName=".CartData" syncable="YES">
+        <attribute name="productDescription" optional="YES" attributeType="String"/>
+        <attribute name="productImage" optional="YES" attributeType="String"/>
+        <attribute name="productTitle" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UserData" representedClassName=".UserData" syncable="YES">
+        <attribute name="userEmailId" optional="YES" attributeType="String"/>
+        <attribute name="userMobile" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <attribute name="userPassword" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="UserData" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="CartData" positionX="-54" positionY="18" width="128" height="74"/>
+    </elements>
+</model>
