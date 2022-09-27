@@ -9,11 +9,27 @@ import XCTest
 @testable import ShoppingAppSprint
 
 class ShoppingAppSprintTests: XCTestCase {
+    var loginVC: LoginViewController!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        loginVC = LoginViewController.getVC()
+        loginVC!.loadViewIfNeeded()
     }
-
+    // test to check button action
+    func test_checkButtonAction() throws{
+        let loginBtn: UIButton = try XCTUnwrap(loginVC.loginButton, "login button has no referencing outlet")
+        let loginAction = try XCTUnwrap(loginBtn.actions(forTarget: loginVC, forControlEvent: .touchUpInside), "Login Button does not have an action")
+        
+        XCTAssertEqual(loginAction.count, 1)
+        XCTAssertEqual(loginAction.first, "loginButtonTapped:", "No action available for login button")
+    }
+    //Checking outlet connections
+    func test_LoginVCoutlets() throws {
+        XCTAssertNotNil(loginVC.emailIdTextField, "Failed - no connected outlet")
+        XCTAssertNotNil(loginVC.passwordTextField, "Failed- no outlets connected")
+    }
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
