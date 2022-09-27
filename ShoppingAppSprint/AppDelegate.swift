@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         FirebaseApp.configure()
         let localAuthorization = LocalAuthorization()
-        //localAuthorization.authenticateUserBySecurityPin()
+        localAuthorization.authenticateUserBySecurityPin()
         
         notificationCenter.delegate = self
         let options : UNAuthorizationOptions = [.sound , .alert, .badge]
