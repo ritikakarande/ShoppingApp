@@ -18,7 +18,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var categoryTableView: UITableView!
     var categoryArray = NSMutableArray()
     
-
+    // Displays category types by fetching json link using alamofire
     func displayCategories() {
         
         // Fetching data from dummyjson URL using alamofire framework

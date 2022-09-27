@@ -25,6 +25,7 @@ class LoginViewController: UIViewController {
         loginScreenImg.layer.cornerRadius = 40
         loginScreenImg.clipsToBounds = true
     }
+    // Checking firbase for user credentials and storing in keychain access
     func userLogin(emailId: String, password: String){
         Auth.auth().signIn(withEmail: emailId, password: password, completion: {
             (result, error) in
@@ -50,10 +51,16 @@ class LoginViewController: UIViewController {
         let password: String = passwordTextField.text!
         userLogin(emailId: email, password: password)
     }
+    
+    // Function for used in implementing test cases
+    static func getVC() -> LoginViewController{
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        return VC
+    }
 
     
 }
-
 
 class KeyChainManager {
     class func save(account: String, password: String) -> OSStatus {
@@ -67,12 +74,16 @@ class KeyChainManager {
         return status
     }
 }
+// Class for local authorization
 class LocalAuthorization: UIViewController {
+    
+    // Authorization using faceID
     func authenticateUserByFaceId(){
         let context = LAContext()
         var autherror: NSError?
         let msgStr = "Authentication required"
         
+        // Calling lacontext functionality for getting authentication
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &autherror){
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: msgStr) {
                 [weak self] success, error in
