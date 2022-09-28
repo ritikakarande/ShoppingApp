@@ -25,6 +25,7 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
+    // Function to store user credentials in firebase
     func registerUser(emailId: String, password: String){
         Auth.auth().createUser(withEmail: emailId, password: password, completion: {
             (result, error) -> Void in
@@ -37,14 +38,20 @@ class SignUpViewController: UIViewController {
         })
         
     }
+    static func getSignVC() -> SignUpViewController{
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signupVC = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        return signupVC
+    }
 
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
-        
+        // Checking validations
         if (usernameTextField.text?.isNameValid)! {
             if (emailIdTextField.text?.isEmailValid)! {
                 if (mobileTextField.text?.isPhoneNumberValid)! {
                     if ((passwordTextField.text?.isPasswordValid)! && (passwordTextField.text == confirmPasswordTextField.text)) {
+                        // Instanciating coredata
                         let appDelegate = (UIApplication.shared.delegate) as! AppDelegate
                         let context = appDelegate.persistentContainer.viewContext
                         let user = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as! UserData
@@ -76,6 +83,8 @@ class SignUpViewController: UIViewController {
                                 }
                                 let email: String = emailIdTextField.text!
                                 let password: String = passwordTextField.text!
+                                
+                                // Storing data in firebase
                                 registerUser(emailId: email, password: password)
                                 let tabBarViewController = self.storyboard?.instantiateViewController(withIdentifier: "CustomTabBarViewController") as! CustomTabBarViewController
                                 self.navigationController?.pushViewController(tabBarViewController, animated: true)

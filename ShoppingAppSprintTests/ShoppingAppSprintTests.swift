@@ -10,11 +10,14 @@ import XCTest
 
 class ShoppingAppSprintTests: XCTestCase {
     var loginVC: LoginViewController!
+    var signUpVC: SignUpViewController!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         loginVC = LoginViewController.getVC()
         loginVC!.loadViewIfNeeded()
+        signUpVC = SignUpViewController.getSignVC()
+        signUpVC!.loadViewIfNeeded()
     }
     // test to check button action
     func test_checkButtonAction() throws{
@@ -25,9 +28,14 @@ class ShoppingAppSprintTests: XCTestCase {
         XCTAssertEqual(loginAction.first, "loginButtonTapped:", "No action available for login button")
     }
     //Checking outlet connections
-    func test_LoginVCoutlets() throws {
+    func test_Outlets() throws {
         XCTAssertNotNil(loginVC.emailIdTextField, "Failed - no connected outlet")
         XCTAssertNotNil(loginVC.passwordTextField, "Failed- no outlets connected")
+        XCTAssertNotNil(signUpVC.usernameTextField, "Failed- no outlets connected")
+        XCTAssertNotNil(signUpVC.passwordTextField, "Failed- no outlets connected")
+        XCTAssertNotNil(signUpVC.emailIdTextField, "Failed- no outlets connected")
+        XCTAssertNotNil(signUpVC.mobileTextField, "Failed- no outlets connected")
+        XCTAssertNotNil(signUpVC.confirmPasswordTextField, "Failed- no outlets connected")
     }
     
     override func tearDownWithError() throws {
